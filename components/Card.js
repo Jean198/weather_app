@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from '../styles/Card.module.css'
 
 export const Card = (props) => {
   if(props.message.error){
@@ -12,11 +13,15 @@ export const Card = (props) => {
 
 
   }else{
+
+    
     return (
-      <div>
-        <p>{props.message.location}</p>
-        <p>{props.message.temperature}</p>
-        <p>{props.message.feelsLike}</p>
+      <div className={styles.container}>
+        <div><h1>{props.message.location}</h1></div>
+        <div ><img className={styles.image} src={`http://openweathermap.org/img/w/${props.message.icon}.png`} alt="" /></div>
+        <div><h2>{props.message.temperature}</h2></div>
+        <div><h3>Feels Like: {props.message.feelsLike} </h3></div>
+    
         
       </div>
     )

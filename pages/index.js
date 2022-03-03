@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import SearchBar from '../components/SearchBar'
-import Button from '../components/Button'
+
 import { Card } from '../components/Card'
 import bodyParser from "body-parser";
 import util from "util";
@@ -13,16 +13,18 @@ export default  function Home({weatherData}) {
 
   let results={}
 
-  if (weatherData.message==="city not found" || weatherData.message==="bad query"){
-    results.error="The city can't be found"
+  if (weatherData.message==="city not found" || weatherData.message==="bad query"|| weatherData.message==="Nothing to geocode"){
+    results.error="Please enter a valid city"
 
     return (
       <div className={styles.container}>
-        <h1>My weather app</h1>
+        <h1>Weather App</h1>
         
-        
-        <SearchBar/>
-        
+        <div className={styles.searchBar}>
+          <SearchBar/>
+          
+          
+        </div>
         <Card message={results}/>
        
   
@@ -34,16 +36,21 @@ export default  function Home({weatherData}) {
 results.location= weatherData.name;
 results.temperature=weatherData.main.temp;
 results.feelsLike=weatherData.main.feels_like;
+results.icon=weatherData.weather[0].icon;
+
+
 
 
   return (
     <div className={styles.container}>
       <h1>My weather app</h1>
       
-      
+      <div className={styles.searchBar}>
       <SearchBar/>
-      
+      </div>
+
       <Card message={results}/>
+      
      
 
     </div>

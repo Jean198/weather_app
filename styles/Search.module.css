@@ -1,0 +1,14 @@
+.form{
+    display: flex;
+    flex-direction: row;
+    
+    
+  }
+
+  .searchbar{
+
+    width: 400px;
+    padding: 10px 5px;
+    font-size: 1em;
+
+  }
