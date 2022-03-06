@@ -33,10 +33,10 @@ export default  function Home({weatherData}) {
     
   }else{
 
-results.location= weatherData.name;
-results.temperature=weatherData.main.temp;
-results.feelsLike=weatherData.main.feels_like;
-results.icon=weatherData.weather[0].icon;
+          results.location= weatherData.name;
+          results.temperature=weatherData.main.temp;
+          results.feelsLike=weatherData.main.feels_like;
+          results.icon=weatherData.weather[0].icon;
 
 
 
@@ -63,6 +63,7 @@ results.icon=weatherData.weather[0].icon;
 export async function getServerSideProps({ req, res }) {
   await getBody(req, res);
   const city=req.body.name
+  
   const api = {
     key: "86223b961e7a39d7324cd5c6164e60ae",
     base: "https://api.openweathermap.org/data/2.5/"
@@ -71,7 +72,7 @@ export async function getServerSideProps({ req, res }) {
   const myData = await fetch(`${api.base}weather?q=${city}&units=metric&APPID=${api.key}`)
 
   const weatherData= await myData.json()
-  console.log("This is my weatherdata: ",weatherData)
+  
 
   
 
